@@ -3,15 +3,15 @@
 
 # Table of Contents
 
-[Introduction](./README.md#introduction)
+[Introduction](#introduction)
 
-[The Role of Comments in Code](./README.md#the-role-of-comments-in-code)
+[The Role of Comments in Code](the-role-of-comments-in-code)
 
-[Over-documentation: Issues and Consequences](./README.md#over-documentation-issues-and-consequences)
+[Over-documentation: Issues and Consequences](#over-documentation-issues-and-consequences)
 
-[Striking the Right Balance](./README.md#striking-the-right-balance)
+[Striking the Right Balance](#striking-the-right-balance)
 
-[Conclusion](./README.md#conclusion)
+[Conclusion](#conclusion)
 
 ## Introduction
 
