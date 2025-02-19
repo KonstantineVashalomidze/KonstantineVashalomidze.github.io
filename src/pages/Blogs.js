@@ -6,27 +6,36 @@ import { blogs } from '../data/blogs';
 const BlogsContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
+  padding: ${props => props.theme.spacing.md};
 `;
 
-const Header = styled.header`
+const Header = styled.section`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: ${props => props.theme.spacing.xl};
+  padding: ${props => props.theme.spacing.lg};
+  border: 2px solid ${props => props.theme.colors.primary};
+  background: white;
+  
+  &:hover {
+    box-shadow: ${props => props.theme.shadows.main};
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: ${props => props.theme.fontSizes['2xl']};
+  margin-bottom: ${props => props.theme.spacing.md};
+  color: ${props => props.theme.colors.primary};
 `;
 
 const Description = styled.p`
-  font-size: 1.2rem;
+  font-size: ${props => props.theme.fontSizes.lg};
   color: ${props => props.theme.colors.secondary};
 `;
 
 const BlogsList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: ${props => props.theme.spacing.lg};
 `;
 
 function Blogs() {
