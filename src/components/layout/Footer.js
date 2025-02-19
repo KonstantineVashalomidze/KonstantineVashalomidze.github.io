@@ -14,8 +14,15 @@ const FooterContent = styled.div`
   max-width: 800px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: ${props => props.theme.spacing.md};
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
   gap: ${props => props.theme.spacing.lg};
+  margin-bottom: ${props => props.theme.spacing.md};
 `;
 
 const SocialLink = styled.a`
@@ -31,31 +38,48 @@ const SocialLink = styled.a`
   }
 `;
 
+const Copyright = styled.p`
+  font-size: ${props => props.theme.fontSizes.sm};
+  text-align: center;
+`;
+
 function Footer() {
   return (
     <FooterContainer>
       <FooterContent>
-        <SocialLink 
-          href={personalInfo.social.github}
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </SocialLink>
-        <SocialLink 
-          href={personalInfo.social.linkedin}
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </SocialLink>
-        <SocialLink 
-          href={personalInfo.social.twitter}
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          Twitter
-        </SocialLink>
+        <SocialLinks>
+          <SocialLink 
+            href={personalInfo.platforms.GitHub}
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </SocialLink>
+          <SocialLink 
+            href={personalInfo.platforms.LinkedIn}
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </SocialLink>
+          <SocialLink 
+            href={personalInfo.platforms.Leetcode}
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            LeetCode
+          </SocialLink>
+          <SocialLink 
+            href={personalInfo.platforms.Hackerrank}
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            HackerRank
+          </SocialLink>
+        </SocialLinks>
+        <Copyright>
+          © {new Date().getFullYear()} Konstantine Vashalomidze. All rights reserved.
+        </Copyright>
       </FooterContent>
     </FooterContainer>
   );

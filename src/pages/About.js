@@ -118,24 +118,48 @@ const PlatformLink = styled.a`
 `;
 
 const SkillsList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${props => props.theme.spacing.sm};
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: ${props => props.theme.spacing.md};
   list-style: none;
+  padding: 0;
 `;
 
-const Skill = styled.li`
-  background: ${props => props.theme.colors.primary};
-  color: white;
-  padding: ${props => props.theme.spacing.xs} ${props => props.theme.spacing.sm};
+const SkillItem = styled.li`
+  background: white;
+  padding: ${props => props.theme.spacing.md};
   border: 2px solid ${props => props.theme.colors.primary};
-  font-family: ${props => props.theme.fonts.mono};
-  font-size: ${props => props.theme.fontSizes.sm};
   
   &:hover {
-    background: white;
-    color: ${props => props.theme.colors.primary};
+    box-shadow: ${props => props.theme.shadows.main};
   }
+`;
+
+const SkillName = styled.div`
+  font-family: ${props => props.theme.fonts.mono};
+  font-weight: bold;
+  color: ${props => props.theme.colors.primary};
+  margin-bottom: ${props => props.theme.spacing.xs};
+`;
+
+const SkillBar = styled.div`
+  height: 8px;
+  background: ${props => props.theme.colors.secondary}30;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: ${props => props.theme.spacing.xs};
+`;
+
+const SkillLevel = styled.div`
+  height: 100%;
+  width: ${props => props.level}%;
+  background: ${props => props.theme.colors.primary};
+  transition: width 0.3s ease;
+`;
+
+const SkillLevelText = styled.span`
+  font-size: ${props => props.theme.fontSizes.sm};
+  color: ${props => props.theme.colors.secondary};
 `;
 
 const ExperienceItem = styled.div`
@@ -166,6 +190,82 @@ const ExperienceItem = styled.div`
   }
 `;
 
+const SupportButton = styled(ContactItem)`
+  text-align: center;
+  background: ${props => props.theme.colors.primary};
+  color: white;
+  font-weight: bold;
+  
+  &:hover {
+    background: white;
+    color: ${props => props.theme.colors.primary};
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
+const ResumeButton = styled(ContactItem)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${props => props.theme.spacing.sm};
+  background: white;
+  font-weight: bold;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+const CertificateGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: ${props => props.theme.spacing.md};
+`;
+
+const CertificateItem = styled.a`
+  display: flex;
+  flex-direction: column;
+  padding: ${props => props.theme.spacing.md};
+  border: 2px solid ${props => props.theme.colors.primary};
+  text-decoration: none;
+  color: ${props => props.theme.colors.primary};
+  background: white;
+  
+  &:hover {
+    box-shadow: ${props => props.theme.shadows.main};
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
+const CertificateName = styled.h3`
+  font-size: ${props => props.theme.fontSizes.lg};
+  margin-bottom: ${props => props.theme.spacing.xs};
+  color: ${props => props.theme.colors.primary};
+`;
+
+const CertificateIssuer = styled.div`
+  font-family: ${props => props.theme.fonts.mono};
+  color: ${props => props.theme.colors.secondary};
+  font-size: ${props => props.theme.fontSizes.sm};
+  margin-bottom: ${props => props.theme.spacing.xs};
+`;
+
+const CertificateDate = styled.div`
+  font-size: ${props => props.theme.fontSizes.sm};
+  color: ${props => props.theme.colors.secondary};
+`;
+
+const getSkillLevelLabel = (level) => {
+  if (level >= 90) return "Expert";
+  if (level >= 80) return "Advanced";
+  if (level >= 70) return "Proficient";
+  if (level >= 50) return "Intermediate";
+  return "Beginner";
+};
+
 function About() {
   return (
     <AboutContainer>
@@ -179,14 +279,31 @@ function About() {
       </ProfileSection>
 
       <Section>
-        <SectionTitle>Contact</SectionTitle>
+        <SectionTitle>Contact & Resources</SectionTitle>
         <ContactGrid>
-          <ContactItem href={`mailto:${personalInfo.contact.email}`}>
-            ✉️ {personalInfo.contact.email}
+          <ContactItem 
+            href={`mailto:${personalInfo.contact.email}`} 
+            style={{ 
+              wordBreak: 'break-all',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}
+          >
+            {personalInfo.contact.email}
           </ContactItem>
           <ContactItem href={`tel:${personalInfo.contact.phone}`}>
-            📞 {personalInfo.contact.phone}
+            {personalInfo.contact.phone}
           </ContactItem>
+          <ResumeButton 
+            href={personalInfo.resumeUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4V2h10v2h5v18H2V4h5zM4 6v14h16V6H4zm7 5h6v2h-6v-2zm0 4h6v2h-6v-2zM7 7h4v4H7V7z"/>
+            </svg>
+            View Resume
+          </ResumeButton>
         </ContactGrid>
       </Section>
 
@@ -210,7 +327,15 @@ function About() {
         <SectionTitle>Skills</SectionTitle>
         <SkillsList>
           {personalInfo.skills.map((skill, index) => (
-            <Skill key={index}>{skill}</Skill>
+            <SkillItem key={index}>
+              <SkillName>{skill.name}</SkillName>
+              <SkillBar>
+                <SkillLevel level={skill.level} />
+              </SkillBar>
+              <SkillLevelText>
+                {skill.level}% - {getSkillLevelLabel(skill.level)}
+              </SkillLevelText>
+            </SkillItem>
           ))}
         </SkillsList>
       </Section>
@@ -235,6 +360,37 @@ function About() {
             <p className="description">{edu.description}</p>
           </ExperienceItem>
         ))}
+      </Section>
+
+      <Section>
+        <SectionTitle>Certificates</SectionTitle>
+        <CertificateGrid>
+          {personalInfo.certificates.map((cert, index) => (
+            <CertificateItem 
+              key={index}
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <CertificateName>{cert.name}</CertificateName>
+              <CertificateIssuer>{cert.issuer}</CertificateIssuer>
+              <CertificateDate>{cert.date}</CertificateDate>
+            </CertificateItem>
+          ))}
+        </CertificateGrid>
+      </Section>
+
+      <Section>
+        <SectionTitle>Support My Work</SectionTitle>
+        <ContactGrid>
+          <SupportButton
+            href="https://www.paypal.com/paypalme/mamaafrica9988"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Support via PayPal
+          </SupportButton>
+        </ContactGrid>
       </Section>
     </AboutContainer>
   );
