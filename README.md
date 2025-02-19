@@ -2,7 +2,7 @@
 
 #### **General Requirements:**
 - The application should be deployable on GitHub Pages.  
-- Design should be **lightweight**, **retro-style**, with **minimal dark colors**.  
+- Design should be **lightweight**, **retro-style**.  
 - Navigation Bar with the following links:  
   - **Home**  
   - **Projects**  
@@ -10,9 +10,8 @@
   - **About**  
 - **Data Management:**  
   - The application should allow **easy addition of new data** (projects, blog posts, social links, etc.).  
-  - Consider using **JSON files, Markdown files**, or **CMS integration** (like Netlify CMS or Contentlayer) for content management.  
+  - Consider using **JSON files or Markdown files**.  
   - Adding, updating, or removing data should not require changing the code.  
-
 ---
 
 #### **Page Specifications:**
@@ -87,10 +86,3 @@ Each project detail page should contain:
 
 ---
 
-#### **How to Easily Add Data:**  
-- Use **JSON or Markdown files** for storing project and blog data.  
-- Create a **content folder** where you can add new files without modifying components.  
-- For dynamic content fetching, consider tools like:  
-  - **Contentlayer**: For Markdown content with easy data management.  
-  - **Netlify CMS**: For a user-friendly interface to manage content.  
-  - **Strapi (optional)**: If you want a headless CMS with more features.  
