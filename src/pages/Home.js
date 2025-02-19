@@ -63,7 +63,7 @@ function Home() {
     <HomeContainer>
       <Hero>
         <Title>Welcome to My Portfolio</Title>
-        <Subtitle>Full-stack developer crafting digital experiences</Subtitle>
+        <Subtitle>Computer Scientist crafting digital experiences</Subtitle>
       </Hero>
 
       <section>
