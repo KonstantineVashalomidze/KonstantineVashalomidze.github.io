@@ -85,9 +85,4 @@ unnecessary cognitive load, while too little documentation can make codebase dif
 life towards good!
     `
   }, 
-  {
-    id: 2,
-    title: "",
-    date: "2025-02-20"
-  }
 ];
