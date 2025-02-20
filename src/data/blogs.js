@@ -84,5 +84,10 @@ Striking the balance between over-and under-documentation is important for a wel
 unnecessary cognitive load, while too little documentation can make codebase difficult to maintain and understand. So dear fellow developers please spend some time while making documentation this will change 
 life towards good!
     `
+  }, 
+  {
+    id: 2,
+    title: "",
+    date: "2025-02-20"
   }
 ];
