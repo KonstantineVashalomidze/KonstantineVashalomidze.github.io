@@ -140,5 +140,5 @@ export const personalInfo = {
       link: "https://github.com/KonstantineVashalomidze/KonstantineVashalomidze/blob/main/certificates/mongodb/kosta-vashalomidze-MongoDB-Java-Developer-Path-certificate.pdf",
     }
   ],
-  resumeUrl: "https://github.com/KonstantineVashalomidze/KonstantineVashalomidze/blob/main/resume/KonstantineVashalomidzeResume3.pdf"
+  resumeUrl: "https://github.com/KonstantineVashalomidze/KonstantineVashalomidze/blob/main/resume/KonstantineVashalomidzeResume4.pdf"
 }; 
