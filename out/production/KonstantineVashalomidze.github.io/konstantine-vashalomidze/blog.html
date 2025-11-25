@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <title>Konstantine Vashalomidze - Blog</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width" name="viewport"/>
+    <meta content="Konstantine Vashalomidze" name="author"/>
+    <meta content="Konstantine Vashalomidze - Blog" property="og:title"/>
+    <meta
+            content="Konstantine Vashalomidze - Computer Science graduate from KIU, working at Croco Squad as an
+            application support. This page represents a set of articles written by me."
+            property="og:description"
+    />
+    <meta
+            content="https://github.com/KonstantineVashalomidze/KonstantineVashalomidze.github.io/blob/main/resources/images/profile1200x630.png?raw=true"
+            property="og:image"
+    />
+    <meta
+            content="https://konstantinevashalomidze.github.io/konstantine-vashalomidze/profile.html"
+            property="og:url"
+    />
+    <meta content="website" property="og:type"/>
+    <meta content="1200" property="og:image:width"/>
+    <meta content="630" property="og:image:height"/>
+
+    <link href="../resources/images/profile16x16.ico" rel="icon" type="image/x-icon"/>
+    <link href="" rel="stylesheet">
+    <script type="module" src="./blog.js"></script>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="./home.html" title="Home page">Home</a>
+        <a href="./blog.html" title="Blog page">Blog</a>
+        <a href="./projects.html" title="Projects page">Projects</a>
+        <a href="./profile.html" title="Profile page">Profile</a>
+        <p><strong>NOTE FOR USERS</strong>: To see latest version of the page, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd>
+            + <kbd>R</kbd>.</p>
+    </nav>
+    <hr/>
+    <h1>
+        Blog
+    </h1>
+</header>
+<main>
+    <article>
+        <aside>
+            <h2>Table of contents</h2>
+            <hr/>
+            <dl>
+                <dt>
+                    <a href="#introduction">Introduction</a>
+                </dt>
+                <dt>
+                    <a href="#articles">Articles</a>
+                </dt>
+            </dl>
+        </aside>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <hr/>
+            <p>
+                I want this to be place where I share my thoughts and experiences on any topic that I wish, document
+                my learning path, and share ideas that interest me. Feel free to browse and discover something that
+                interests you.
+            </p>
+            <p>
+                I am constantly trying to improve and do things as properly as possible, but in case you find any
+                anything misleading or just dislike something let me know at this
+                <a href="./profile.html#contact" title="Contact Konstantine Vashalomidze"><q>contact me</q></a> link.
+            </p>
+        </section>
+        <section id="articles">
+            <h2>Articles</h2>
+            <hr/>
+            <section>
+                <dl>
+                    <dt>
+                        <article>
+                            <button>Show more</button>
+                            <figure>
+                                    <pre>
+                                    <code>
+// Function definition
+var add = fn(a, b) { return a + b; };
+
+// Function call
+add(1, 2);
+
+// Recursive function
+var factorial = fn(n) {
+    if (n == 0) { 1; }
+    else { n * factorial(n - 1); }
+};
+
+// Higher-order function
+var higherOrderFunction = fn(f, x) {
+    return f(f(x));
+};
+
+var invert = fn(b) { !b; };
+
+// Evaluates to true
+higherOrderFunction(invert, true);
+                                    </code>
+                                </pre>
+                                <figcaption>
+                                    <p>
+                                        Defining
+                                        <dfn title="A high-level programming language is a programming language with strong abstraction from the details of the computer.">
+                                            high-level programming language
+                                        </dfn>
+                                        <a href="./articles/defining-high-level-programming-language.html"
+                                           title="Defining high-level programming language">
+                                            Read more
+                                        </a>
+                                    </p>
+                                </figcaption>
+                            </figure>
+                            <p>
+                                In this article I will define what a
+                                <dfn title="A high-level programming language is a programming language with strong abstraction from the details of the computer.">high-level
+                                    programming language</dfn> is and will create a simple one, for which we will later
+                                write a <dfn
+                                    title="A lexer is a component of a compiler or interpreter that breaks down source code into tokens">lexer</dfn>,
+                                <dfn title="A parser is a component of a compiler or interpreter that breaks down tokens into abstract syntax trees">parser</dfn>
+                                and <dfn
+                                    title="An interpreter is a program that converts source code into machine code at runtime">interpreter</dfn>.
+                            </p>
+                        </article>
+                        <hr/>
+                        <hr/>
+
+                    </dt>
+                    <dt>
+                        <article>
+                            <figure>
+                                <pre>
+                                    <code>
+Lexer lexer = new Lexer("var x = 10;");
+Parser parser = new Parser(lexer);
+
+// And if needed, parse the program
+// Root of AST
+Program program = parser.parseProgram();
+                                    </code>
+                                </pre>
+                                <figcaption>
+                                    <p>
+                                        Creating
+                                        <dfn title="A lexer is a component of a compiler or interpreter that breaks down source code into tokens">
+                                            lexer
+                                        </dfn>
+                                        and
+                                        <dfn title="A parser is a component of a compiler or interpreter that breaks down tokens into abstract syntax trees">
+                                            parser
+                                        </dfn>
+                                        of the
+                                        <dfn title="A high-level programming language is a programming language with strong abstraction from the details of the computer.">
+                                            high-level programming language
+                                        </dfn>.
+                                        <a href="./articles/creating-lexer-and-parser-of-the-high-level-programming-language.html"
+                                           title="Creating lexer and parser of the high-level programming language">
+                                            Read more
+                                        </a>
+                                    </p>
+                                </figcaption>
+                            </figure>
+                            <p>
+                                In this article I will create a <dfn
+                                    title="A lexer is a component of a compiler or interpreter that breaks down source code into tokens">lexer</dfn>
+                                and <dfn
+                                    title="A parser is a component of a compiler or interpreter that breaks down tokens into abstract syntax trees">parser</dfn>
+                                for the <dfn
+                                    title="A high-level programming language is a programming language with strong abstraction from the details of the computer.">high-level
+                                programming language</dfn> defined in the previous article.
+                            </p>
+                        </article>
+                        <hr/>
+                        <hr/>
+
+                    </dt>
+                    <dt>
+                        <article>
+                            <figure>
+<pre><code>
+Hello konst! This is Kosta's
+    programming language
+Feel free to type in commands
+
+>> var x = 5; var y = 10; x + y;
+15
+
+>> var factorial = fn(n) {
+    if (n == 0) { 1; }
+    else { n * factorial(n - 1); }
+};
+...
+
+>> fn(x) { return factorial(x); } (3);
+6
+
+>> var logicalExpression = !true & false
+    | true != 5 > 7 - 1;
+true
+
+>> var complexComparison = (5 > 7 == 5 < 7)
+    != false;
+false
+
+>> var add = fn(a, b) { return a + b; };
+    add(1, 2);
+3
+
+>> |
+</code></pre>
+                                <figcaption>
+                                    <p>
+                                        Creating
+                                        <dfn title="An interpreter is a program that converts source code into machine code at runtime">
+                                            interpreter
+                                        </dfn>
+                                        from scratch.
+                                        <a href="./articles/creating-interpreter-from-scratch.html"
+                                           title="Creating interpreter from scratch">
+                                            Read more
+                                        </a>
+                                    </p>
+                                </figcaption>
+                            </figure>
+                            <p>
+                                In this article I will create an <dfn
+                                    title="An interpreter is a program that converts source code into machine code at runtime">interpreter</dfn>
+                                for the <dfn
+                                    title="A high-level programming language is a programming language with strong abstraction from the details of the computer.">high-level
+                                programming language</dfn>, bringing together the <dfn
+                                    title="A lexer is a component of a compiler or interpreter that breaks down source code into tokens">lexer</dfn>
+                                and <dfn
+                                    title="A parser is a component of a compiler or interpreter that breaks down tokens into abstract syntax trees">parser</dfn>
+                                from previous articles.
+                            </p>
+                        </article>
+                    </dt>
+                </dl>
+
+            </section>
+        </section>
+    </article>
+</main>
+
+</body>
