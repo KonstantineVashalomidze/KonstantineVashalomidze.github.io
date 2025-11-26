@@ -1,30 +1,25 @@
 /* Add audio on each page */
 const snowAudio = document.createElement("audio");
-const audioValueRange = document.createElement("input");
+const snowAudioPlayPauseButton = document.createElement("button");
 
 snowAudio.src = "../resources/audios/snow.ogg";
 snowAudio.loop = true;
 
-audioValueRange.type = "range";
-audioValueRange.min = "0";
-audioValueRange.max = "100";
-audioValueRange.value = "5";
-audioValueRange.step = "1";
+snowAudioPlayPauseButton.textContent = "Play song";
 
-audioValueRange.addEventListener("input", function () {
-    snowAudio.volume = Number(audioValueRange.value) / 100;
-});
-
-
-document.addEventListener("click", function playOnce() {
-    snowAudio.volume = Number(audioValueRange.value) / 100;
-    snowAudio.play().catch(function() {
-        snowAudio.play().then(() => {
-           console.log("Audio Playing");
+snowAudioPlayPauseButton.addEventListener("click", function () {
+    snowAudio.volume = 0.1;
+    if (snowAudio.paused) {
+        snowAudio.play().catch((error) => {
+            console.error("Couldn't play: " + error);
         });
-    });
-    document.removeEventListener("click", playOnce);
+        snowAudioPlayPauseButton.textContent = "Pause song";
+    } else {
+        snowAudio.pause();
+        snowAudioPlayPauseButton.textContent = "Play song";
+    }
 });
+
 
 
 /* Navbar is global */
@@ -42,7 +37,7 @@ const nav = document.createElement("nav");
 for (const navbarElement of navbarElements) {
     nav.innerHTML += navbarElement + "\n";
 }
-header.prepend(nav);
+header.prepend(nav, snowAudio, snowAudioPlayPauseButton);
 
 
 
