@@ -1,0 +1,9 @@
+header {
+    border: 10px solid gray;
+}
+
+nav {
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
