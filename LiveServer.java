@@ -24,6 +24,8 @@ public class LiveServer {
         MIME_TYPES.put("svg", "image/svg+xml");
         MIME_TYPES.put("ico", "image/x-icon");
         MIME_TYPES.put("txt", "text/plain");
+        MIME_TYPES.put("ogg", "audio/ogg");
+        MIME_TYPES.put("mp3", "audio/mpeg");
     }
 
     // JavaScript snippet to inject for live reload

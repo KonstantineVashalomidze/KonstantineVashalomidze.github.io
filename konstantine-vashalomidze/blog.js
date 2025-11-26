@@ -27,7 +27,6 @@ const data = {
     ]
 };
 
-
 function fetchArticles() {
     data.articles.forEach(a => {
         const dt = document.createElement("dt");
@@ -84,8 +83,6 @@ function fetchArticles() {
         document.getElementById("articles-description-list").appendChild(dt);
     });
 }
-
-
 
 fetchArticles();
 
