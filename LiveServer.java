@@ -142,6 +142,7 @@ public class LiveServer {
 
                     for (WatchEvent<?> event : key.pollEvents()) {
                         String filename = event.context().toString();
+                        if (filename.equals(".idea")) continue;
                         System.out.println("⟳ File changed: " + filename + " - reloading clients...");
                         notifyClients();
                     }

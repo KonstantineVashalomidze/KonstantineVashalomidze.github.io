@@ -1,0 +1,23 @@
+.introParagraph {
+    background-color: #e0f2fe;
+    padding: 20px;
+    border-left: 4px solid dodgerblue;
+    border-radius: 10px;
+    font-size: 1.05em;
+}
+
+
+figure code {
+    display: block;
+    background-color: dodgerblue;
+    color: black;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto; /* For horizontal scrolling */
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+
