@@ -6,6 +6,7 @@ snowAudio.src = "../resources/audios/sherekilebi.mp3";
 snowAudio.loop = true;
 
 snowAudioPlayPauseButton.textContent = "Play song";
+snowAudioPlayPauseButton.id = "snowAudioPlayPauseButton";
 
 snowAudioPlayPauseButton.addEventListener("click", function () {
     snowAudio.volume = 0.1;

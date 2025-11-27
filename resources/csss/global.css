@@ -65,6 +65,10 @@ button:hover {
     transform: translateY(-2px);
 }
 
+#snowAudioPlayPauseButton {
+    margin-bottom: 10px;
+}
+
 article em {
     color: #0284c7;
     font-weight: 500;
@@ -101,15 +105,12 @@ aside {
     border-radius: 8px;
     margin-bottom: calc(20px + 2vh);
     padding: calc(15px + 1vw);
-    width: calc(100% - 42px);
 }
-
 
 section {
     margin-bottom: calc(20px + 2vh);
     border: 2px solid black;
     padding: calc(15px + 1vw);
-    width: calc(100% - 42px);
     background-color: #ffffff;
     border-radius: 8px;
 }
