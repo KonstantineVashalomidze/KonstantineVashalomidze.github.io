@@ -80,7 +80,7 @@ function fetchArticles() {
             }
         });
 
-        document.getElementById("articles-description-list").appendChild(dt);
+        document.getElementById("articlesDescriptionList").appendChild(dt);
     });
 }
 
