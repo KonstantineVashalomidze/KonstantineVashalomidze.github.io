@@ -50,6 +50,15 @@ a:visited {
     color: #7c3aed;
 }
 
+input {
+    border: 2px solid black;
+    border-radius: 6px;
+    font-size: 0.95em;
+    padding: 10px 10px;
+    font-weight: 500;
+    cursor: auto;
+}
+
 button {
     background-color: #2563eb;
     color: white;
@@ -114,5 +123,9 @@ section {
     background-color: #ffffff;
     border-radius: 8px;
 }
+
+
+
+
 
 
