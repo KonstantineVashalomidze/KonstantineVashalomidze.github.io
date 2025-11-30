@@ -1,12 +1,3 @@
-.introParagraph {
-    background-color: #e0f2fe;
-    padding: 20px;
-    border-left: 4px solid dodgerblue;
-    border-radius: 10px;
-    font-size: 1.05em;
-}
-
-
 figure code {
     display: block;
     background-color: dodgerblue;

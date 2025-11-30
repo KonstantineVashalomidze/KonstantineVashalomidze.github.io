@@ -25,9 +25,7 @@ snowAudioPlayPauseButton.addEventListener("click", function () {
 
 /* Navbar is global */
 const navbarElements = [
-    "<a href=\"./home.html\" title=\"Home page\">Home</a>",
     "<a href=\"./blog.html\" title=\"Blog page\">Blog</a>",
-    "<a href=\"./projects.html\" title=\"Projects page\">Projects</a>",
     "<a href=\"./profile.html\" title=\"Profile page\">Profile</a>",
     "<p><strong>NOTE FOR USERS</strong>: To see latest version of the page, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd>\n" +
     "        + <kbd>R</kbd>.</p>"

@@ -126,6 +126,20 @@ section {
 
 
 
+.introParagraph {
+    background-color: #e0f2fe;
+    padding: 20px;
+    border-left: 4px solid dodgerblue;
+    border-radius: 10px;
+    font-size: 1.05em;
+}
 
+.introNoteParagraph {
+    background-color: #dada87;
+    padding: 20px;
+    border-left: 4px solid #f6ec09;
+    border-radius: 10px;
+    font-size: 1.05em;
+}
 
 
