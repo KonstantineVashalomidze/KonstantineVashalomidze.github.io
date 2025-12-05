@@ -2,8 +2,10 @@
 const snowAudio = document.createElement("audio");
 const snowAudioPlayPauseButton = document.createElement("button");
 
-snowAudio.src = "../resources/audios/sherekilebi.mp3";
+snowAudio.src = "./resources/audios/sherekilebi.mp3";
 snowAudio.loop = true;
+snowAudio.preload = "auto";
+
 
 snowAudioPlayPauseButton.textContent = "Play song";
 snowAudioPlayPauseButton.id = "snowAudioPlayPauseButton";
