@@ -24,12 +24,12 @@ class CustomFileWatcher implements Runnable {
 
     private void register(Path path) {
         if (!Files.exists(path)) {
-            logger.warning(String.format("Path %s does not exist", path));
+            logger.warning(String.format("Path (%s) does not exist", path));
             return;
         }
 
         registerPathWithWatchService(path);
-        logger.info(String.format("Registered directory: %s", path));
+        logger.info(String.format("Listening directory: (%s) for changes", path));
 
         try (Stream<Path> stream = Files.list(path)) {
             stream.filter(Files::isDirectory)
@@ -37,7 +37,7 @@ class CustomFileWatcher implements Runnable {
                     .forEach(this::register);
         } catch (IOException e) {
             if (!config.isProduction()) e.printStackTrace();
-            logger.warning(String.format("Could not register directory: %s", e.getMessage()));
+            logger.warning(String.format("Could not register directory: (%s) reason: (%s)", path, e.getMessage()));
         }
 
 
@@ -46,10 +46,10 @@ class CustomFileWatcher implements Runnable {
     private void registerPathWithWatchService(Path path) {
         try {
             path.register(watchService, ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE, OVERFLOW);
-            logger.info(String.format("Registered path: %s", path));
+            logger.info(String.format("Registered path: (%s)", path));
         } catch (IOException e) {
             if (!config.isProduction()) e.printStackTrace();
-            logger.warning(String.format("Could not register path: %s", e.getMessage()));
+            logger.warning(String.format("Could not register path: (%s)", e.getMessage()));
         }
     }
 
@@ -70,7 +70,7 @@ class CustomFileWatcher implements Runnable {
             }
         } catch (InterruptedException e) {
             if (!config.isProduction()) e.printStackTrace();
-            logger.warning(String.format("Could not take watch key: %s", e.getMessage()));
+            logger.warning(String.format("Could not take watch key: (%s)", e.getMessage()));
             Thread.currentThread().interrupt();
         }
     }

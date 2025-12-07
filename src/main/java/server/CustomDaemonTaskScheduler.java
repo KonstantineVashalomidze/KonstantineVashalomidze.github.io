@@ -37,6 +37,12 @@ class CustomDaemonTaskScheduler {
         scheduler.shutdown();
     }
 
+    public void shutdownNow() { scheduler.shutdownNow(); }
+
+    public boolean isTerminated() { return scheduler.isTerminated(); }
+
+    public boolean isShutdown() { return scheduler.isShutdown(); }
+
     private static class DaemonThreadFactory implements ThreadFactory {
         private final AtomicInteger threadNumber = new AtomicInteger(1);
 

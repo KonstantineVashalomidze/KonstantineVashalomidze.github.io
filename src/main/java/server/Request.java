@@ -1,6 +1,7 @@
 package server;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +12,7 @@ class Request {
     private final HttpExchange exchange;
     private final Map<String, String> queryParams;
     private final Map<String, String> pathParams;
-    private String body;
+    private JSONObject body;
 
     public Request(HttpExchange exchange) {
         this.exchange = exchange;
@@ -65,10 +66,10 @@ class Request {
     }
 
 
-    public String getBody() throws IOException {
+    public JSONObject getBody() throws IOException {
         if (body == null) {
             try (InputStream is = exchange.getRequestBody()) {
-                body = new String(is.readAllBytes());
+                body = new JSONObject(new String(is.readAllBytes()));
             }
         }
         return body;

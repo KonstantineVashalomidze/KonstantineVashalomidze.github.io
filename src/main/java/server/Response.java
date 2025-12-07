@@ -10,7 +10,6 @@ class Response {
     private int statusCode = HTTP_OK;
     private byte[] body = new byte[0];
 
-
     public Response() {
     }
 

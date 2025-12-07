@@ -17,7 +17,7 @@ public class Main {
         System.out.println(publicPath.toAbsolutePath());
         if (!Files.exists(publicPath)) {
             Files.createDirectory(publicPath);
-            logger.info(String.format("Created directory: %s", publicPath));
+            logger.info(String.format("Created directory: {%s}", publicPath));
 
         }
 
@@ -31,6 +31,7 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             logger.info("Shutting down gracefully...");
             server.stop();
+            logger.info("Shutdown successful");
         }));
     }
 
@@ -69,7 +70,6 @@ public class Main {
 
 
     public static void enableHotReload(Server server, Config config, Path publicPath, Logger logger) {
-        // Register file change listener
         CustomFileWatcher.FileChangeListener fileChangeListener =
                 new CustomFileWatcher.FileChangeListener() {
                     private final CustomDaemonTaskScheduler scheduler = new CustomDaemonTaskScheduler(1);
@@ -95,15 +95,16 @@ public class Main {
                             pendingRestart.cancel(false);
                         }
                         pendingRestart = scheduler.scheduleOnce(() -> {
-                            logger.info(String.format("File %s change detected. Restarting server...", path));
+                            logger.info(String.format("File change: %s", path));
+                            logger.info("Restarting server...");
                             server.restart();
+                            logger.info("Server restarted");
                         }, 500, TimeUnit.MILLISECONDS);
                     }
 
 
                 };
 
-        // Start file watcher
         try {
             Thread watcherThread = new Thread(
                     new CustomFileWatcher(fileChangeListener, publicPath, config)
@@ -111,7 +112,7 @@ public class Main {
             watcherThread.start();
         } catch (IOException e) {
             if (!config.isProduction()) e.printStackTrace();
-            logger.severe(String.format("Could not start file watcher: %s", e.getMessage()));
+            logger.severe(String.format("Could not start file watcher: (%s)", e.getMessage()));
         }
     }
 

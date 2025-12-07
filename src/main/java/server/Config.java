@@ -15,13 +15,10 @@ class Config {
     private final long logLimit;
     private final int logCount;
     private final boolean logAppend;
-    private final String emailApiKey;
-
     public Config(
             String publicDir, int port, boolean production,
             int maxThreads, long requestTimeout, String logFile,
-            long logLimit, int logCount, boolean logAppend,
-            String emailApiKey
+            long logLimit, int logCount, boolean logAppend
     ) {
         this.publicDir = publicDir;
         this.port = port;
@@ -33,7 +30,6 @@ class Config {
         this.logLimit = logLimit;
         this.logCount = logCount;
         this.logAppend = logAppend;
-        this.emailApiKey = emailApiKey;
     }
 
     public static Config fromEnvironment() {
@@ -47,8 +43,7 @@ class Config {
                 properties.getProperty("log.file", "logs/server.log"),
                 Long.parseLong(properties.getProperty("log.limit", "100000000")),
                 Integer.parseInt(properties.getProperty("log.count", "1")),
-                Boolean.parseBoolean(properties.getProperty("log.append", "false")),
-                properties.getProperty("email.api.key")
+                Boolean.parseBoolean(properties.getProperty("log.append", "false"))
         );
     }
 
@@ -95,10 +90,6 @@ class Config {
 
     public boolean isLogAppend() {
         return logAppend;
-    }
-
-    public String getEmailApiKey() {
-        return emailApiKey;
     }
 
 }

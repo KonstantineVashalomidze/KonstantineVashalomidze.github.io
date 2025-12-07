@@ -26,7 +26,7 @@ public class RateLimiter {
                         return null;
 
                     if (now - counter.lastRequest > windowMs) {
-                        logger.info(String.format("Removing entry %s", k));
+                        logger.info(String.format("Removing ip from rate limit list (%s)", k));
                         return null;
                     }
 

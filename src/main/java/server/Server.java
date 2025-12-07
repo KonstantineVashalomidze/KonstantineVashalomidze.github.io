@@ -21,7 +21,6 @@ class Server {
     private final Logger logger;
     private final Config config;
     private final Path rootDir;
-    private final CustomEmailService customEmailService;
     private HttpServer server;
     private ExecutorService executor;
     private RateLimiter rateLimiter;
@@ -30,7 +29,6 @@ class Server {
         logger = Logger.getLogger(Server.class.getName());
         this.config = config;
         this.rootDir = rootDir;
-        customEmailService = new CustomEmailService(config);
         setupDynamicRoutes();
     }
 
@@ -47,7 +45,7 @@ class Server {
 
         config.addDynamicRoute("/api/subscribe", req -> {
             if ("POST".equals(req.getMethod())) {
-                if (customEmailService.getSubscriptionStatus(req.getBody().indexOf("email:")))
+                    // TODO: subscribe / unsubscribe
                     return new Response().status(HTTP_NO_CONTENT);
             }
             return new Response().status(HTTP_BAD_METHOD)
@@ -66,11 +64,11 @@ class Server {
             server.createContext("/", new Handler());
             server.setExecutor(executor);
             server.start();
-            logger.info(String.format("server.Server started on http://localhost:%d [%s mode]",
+            logger.info(String.format("server.Server started on http://localhost:%d (%s) mode",
                     config.getPort(), config.isProduction() ? "production" : "development"));
         } catch (IOException e) {
             if (!config.isProduction()) e.printStackTrace();
-            logger.severe(String.format("Could not start server: %s", e.getMessage()));
+            logger.severe(String.format("Could not start server: (%s)", e.getMessage()));
         }
     }
 
@@ -84,26 +82,20 @@ class Server {
                 if (!terminated) executor.shutdownNow();
             } catch (InterruptedException e) {
                 if (!config.isProduction()) e.printStackTrace();
-                logger.severe(String.format("Could not stop server: %s", e.getMessage()));
+                logger.severe(String.format("Could not stop server: (%s)", e.getMessage()));
                 if (!executor.isTerminated()) {
-                    logger.info("Calling 'shutdownNow' on 'executor'");
                     executor.shutdownNow();
-                    if (executor.isTerminated()) {
-                        logger.info("'executor' terminated");
-                    } else {
-                        logger.warning("'executor' still not terminating");
-                    }
                 }
                 Thread.currentThread().interrupt();
             }
-            logger.info("server.Server stopped");
+            logger.info("Server has stopped");
         }
     }
 
     public synchronized void restart() {
         stop();
         start();
-        logger.info("server.Server restarted");
+        logger.info("Server has restarted");
     }
 
     class Handler implements HttpHandler {
@@ -139,21 +131,20 @@ class Server {
                 try {
                     sendResponse(exchange, new Response()
                             .status(HTTP_INTERNAL_ERROR)
-                            .body(config.isProduction() ? "Internal server.Server Error" : "Error: " + e.getMessage()));
+                            .body(config.isProduction() ? "Internal Server Error" : "Error: " + e.getMessage()));
                 } catch (IOException ioException) {
                     if (!config.isProduction())
                         e.printStackTrace();
-                    logger.fine("Failed to send 500 error response to client.");
+                    logger.fine("Failed to send (HTTP_INTERNAL_ERROR) error response to client.");
                 }
             }
         }
 
         private Response handleStaticFile(Request request) throws IOException {
             String requestPath = request.getPath();
-            // Remove leading slash to match directory structure
+
             if (requestPath.startsWith("/")) requestPath = requestPath.substring(1);
 
-            // If no name presented client means 'index.html' by convention
             if (requestPath.isEmpty()) requestPath = "index.html";
 
             Path filePath = rootDir.resolve(requestPath).normalize();
@@ -162,6 +153,7 @@ class Server {
                         .status(HTTP_FORBIDDEN)
                         .body("Forbidden");
             }
+
             if (Files.exists(filePath) && !Files.isDirectory(filePath) && !Files.isSymbolicLink(filePath)) {
                 String contentType = Files.probeContentType(filePath);
                 if (contentType == null) contentType = "application/octet-stream";
